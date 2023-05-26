@@ -37,23 +37,65 @@ def initialize() -> List:
 
 
 def isEmpty(data: List) -> bool:
-    raise NotImplementedError("List.isEmpty() not defined")
+    return data.first == None
 
 
 def addAtIndex(data: List, index: int, value: int) -> List:
-    raise NotImplementedError("List.addAtIndex() not defined")
+    def helper(v: Node, index: int, i: int):
+        if index == 0:
+            addToFront(data, value)
+            return data
+        elif i == index - 1:
+            new_node = Node(value, v.next)
+            v.next = new_node
+            return data
+        else:
+            return helper(v.next, index, i + 1)
+    if isEmpty(data):
+        return None
+    else:
+        return helper(data.first, index, i = 0)
 
 
 def removeAtIndex(data: List, index: int) -> tuple[Node, List]:
-    raise NotImplementedError("List.removeAtIndex() not defined")
+    def helper(v: Node, index: int, i: int):
+        if i + 1 == index:
+            target: Node = v.next
+            v.next = target.next
+            return data
+        else:
+            return helper(v.next, index, i + 1)
+    if isEmpty(data):
+        return None
+    elif index < 0 or index >= len(data):
+        raise IndexError('bad')
+    else:
+        return helper(data.first, index, i = 0)
 
 
 def addToFront(data: List, value: int) -> List:
-    raise NotImplementedError("List.addToFront() not defined")
+    if data.first is None:
+        data.first = Node(value, None)
+        return data
+    else:
+        new_node = Node(value, data.first)
+        data.first = new_node
+        return list
+
 
 
 def addToBack(data: List, value: int) -> List:
-    raise NotImplementedError("List.addToBack() not defined")
+    def helper(v: Node, i: int):
+        if i == len(data) - 1:
+            new_node = Node(value, v.next)
+            v.next = new_node
+            return data
+        else:
+            return helper(v.next, i + 1)
+    if isEmpty(data):
+        return None
+    else:
+        return helper(data.first,  i = 0)
 
 
 def getElementAtIndex(data: List, index: int) -> Node:
@@ -74,4 +116,5 @@ def getElementAtIndex(data: List, index: int) -> Node:
 
 
 def clear(data: List) -> List:
-    raise NotImplementedError("List.clear() not defined")
+    data.first = None
+    return data
