@@ -33,7 +33,7 @@ class List:
 
 
 def initialize() -> List:
-    raise NotImplementedError("List.initialize() not defined")
+    return List()
 
 
 def isEmpty(data: List) -> bool:
@@ -57,7 +57,20 @@ def addToBack(data: List, value: int) -> List:
 
 
 def getElementAtIndex(data: List, index: int) -> Node:
-    raise NotImplementedError("List.getElementAtIndex() not defined")
+    def helper(v: Node, index: int, i: int):
+        if i == index:
+            return v
+        elif i > index:
+            raise IndexError('bad')
+        else:
+            return helper(v.next, index, i + 1)
+    if isEmpty(data):
+        return None
+    elif index < 0 or index >= len(data):
+        raise IndexError('bad')
+    else:
+        return helper(data.first, index, i = 0)
+
 
 
 def clear(data: List) -> List:
