@@ -54,9 +54,15 @@ def push(data: Stack, value: int) -> Stack:
 
 # Unsure how to change this to recurisive function when there are no for loops 
 def pop(data: Stack) -> tuple[Node, Stack]:
-    first = data.first
-    data.first = first.next
-    return first, data
+    def helper(v: Node):
+        v = data.first
+        data.first = v.next
+        return v, data
+    if isEmpty(data):
+        return None
+    else:
+        return helper(data)
+    
 
 
 def peek(data: Stack) -> Node:

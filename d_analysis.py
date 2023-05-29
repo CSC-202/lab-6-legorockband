@@ -16,11 +16,11 @@ import c_iterative_queue as Queue_iter
 import c_recursive_queue as Queue_rec
 
 # PLOT CONFIG
-plt.suptitle('Stapleton - Lab 6 Analysis')
+plt.suptitle('Renner - Lab 6 Analysis')
 
 # CONSTANTS
-N_TRIALS = 100  # TODO run on 20 trials
-N_ELEMENTS = 512  # TODO run on 100 elements per trial
+N_TRIALS = 20  # TODO run on 20 trials
+N_ELEMENTS = 100  # TODO run on 100 elements per trial
 
 # DEFINITIONS
 def experiment_list_iter_front(n_trials, n_elements):
@@ -91,7 +91,7 @@ def experiment_list_rec_back(n_trials, n_elements):
     def test_list_back(n):
         # initialize the data structure
         list = List_rec.initialize()
-
+        
         # time the test
         t_0 = time.perf_counter_ns()
         for i in range(n):
@@ -314,14 +314,44 @@ for experiment in RESULTS:
 
 # YOUR CODE GOES BELOW
 ## LIST
+plt.subplot(1, 3, 1)
+plt.xticks([])
+plt.yticks([])
+plt.xlabel('List')
+plt.bar(1, RESULTS['back  (r)'], color = 'blue', label = 'back (r)')
+plt.bar(2, RESULTS['front (r)'], color = 'orange', label = 'front (r)')
+
+plt.bar(1, RESULTS['back  (i)'], width = 0.5, color = 'green', label = 'back (i)')
+plt.bar(2, RESULTS['front (i)'], width = 0.5, color = 'red', label = 'front (i)')
+
+plt.legend()
 
 
 ## STACK
+plt.subplot(1, 3, 2)
+plt.xticks([])
+plt.yticks([])
+plt.xlabel('Stack')
+plt.bar(1, RESULTS['push  (r)'], color = 'blue', label = 'push (r)')
+plt.bar(2, RESULTS['pop   (r)'], color = 'orange', label = 'pop (r)')
 
+
+plt.bar(1,RESULTS['push  (i)'], width = 0.5, color = 'green', label = 'push (i)')
+plt.bar(2,RESULTS['pop   (i)'], width = 0.5, color = 'red', label = 'pop (i)')
+plt.legend()
 
 ## QUEUE
+plt.subplot(1, 3, 3)
+plt.xticks([])
+plt.yticks([])
+plt.xlabel('Queue')
+plt.bar(2, RESULTS['deq   (r)'], color = 'blue', label = 'deq (r)')
+plt.bar(2, RESULTS['enq   (i)'], color = 'orange', label = 'enq (i)')
 
+plt.bar(2, RESULTS['deq   (i)'], width = 0.5, color = 'green', label = 'deq (i)')
+plt.bar(1, RESULTS['enq   (r)'], width = 0.5, color = 'red', label = 'enq (r)')
+plt.legend()
 
 ## SAVE FIGURE
-plt.savefig('./figs/stapleton_lab6_analysis.png')
+plt.savefig('./figs/renner_lab6_analysis.png')
 plt.show()
