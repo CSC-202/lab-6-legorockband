@@ -74,14 +74,13 @@ def removeAtIndex(data: List, index: int) -> tuple[Node, List]:
 
 
 def addToFront(data: List, value: int) -> List:
-    if data.first is None:
+    if data.first == None:
         data.first = Node(value, None)
         return data
     else:
         new_node = Node(value, data.first)
         data.first = new_node
-        return list
-
+        return data
 
 
 def addToBack(data: List, value: int) -> List:
@@ -93,7 +92,8 @@ def addToBack(data: List, value: int) -> List:
         else:
             return helper(v.next, i + 1)
     if isEmpty(data):
-        return None
+        data.first = Node(value, None)
+        return data
     else:
         return helper(data.first,  i = 0)
 
