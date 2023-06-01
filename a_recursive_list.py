@@ -88,8 +88,7 @@ def addToFront(data: List, value: int) -> List:
 
 def addToBack(data: List, value: int) -> List:
     def helper(v: Node, i: int):
-        back = len(data) - 1
-        if i == back:
+        if v.next == None:
             new_node = Node(value, v.next)
             v.next = new_node
             return data

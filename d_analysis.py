@@ -138,10 +138,10 @@ def experiment_stack_iter_pop(n_trials, n_elements):
             stack = Stack_iter.push(stack, i)
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             (_, stack) = Stack_iter.pop(stack)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -182,10 +182,10 @@ def experiment_stack_rec_pop(n_trials, n_elements):
             stack = Stack_rec.push(stack, i)
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             (_, stack) = Stack_rec.pop(stack)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -204,10 +204,10 @@ def experiment_queue_iter_enqueue(n_trials, n_elements):
         queue = Queue_iter.initialize()
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             queue = Queue_iter.enqueue(queue, i)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -227,10 +227,10 @@ def experiment_queue_iter_dequeue(n_trials, n_elements):
             queue = Queue_iter.enqueue(queue, i)
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             (_, queue) = Queue_iter.dequeue(queue)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -248,10 +248,10 @@ def experiment_queue_rec_enqueue(n_trials, n_elements):
         queue = Queue_rec.initialize()
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             queue = Queue_rec.enqueue(queue, i)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -271,10 +271,10 @@ def experiment_queue_rec_dequeue(n_trials, n_elements):
             queue = Queue_rec.enqueue(queue, i)
 
         # time the test
-        t_0 = time.process_time_ns()
+        t_0 = time.perf_counter_ns()
         for i in range(n):
             (_, queue) = Queue_rec.dequeue(queue)
-        t_1 = time.process_time_ns()
+        t_1 = time.perf_counter_ns()
         return t_1 - t_0
 
     for _ in range(n_trials):
@@ -346,7 +346,7 @@ plt.xticks([])
 plt.yticks([])
 plt.xlabel('Queue')
 plt.bar(2, RESULTS['deq   (r)'], color = 'blue', label = 'deq (r)')
-plt.bar(2, RESULTS['enq   (i)'], color = 'orange', label = 'enq (i)')
+plt.bar(1, RESULTS['enq   (i)'], color = 'orange', label = 'enq (i)')
 
 plt.bar(2, RESULTS['deq   (i)'], width = 0.5, color = 'green', label = 'deq (i)')
 plt.bar(1, RESULTS['enq   (r)'], width = 0.5, color = 'red', label = 'enq (r)')

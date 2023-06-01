@@ -41,18 +41,15 @@ def isEmpty(data: Queue) -> bool:
 
 
 def enqueue(data: Queue, value: int) -> Queue:
-    def helper(v: Node, i: int):
-        if i == len(data) - 1:
-            new_node = Node(value, v.next)
-            v.next = new_node
-            return data
-        else:
-            return helper(v.next, i + 1)
+    def helper(v: Node):
+        new_node = Node(value, v.next)
+        v.next = new_node
+        return data
     if isEmpty(data):
         data.first = Node(value, None)
         return data
     else:
-        return helper(data.first,  i = 0)
+        return helper(data.first)
         
 
 def dequeue(data: Queue) -> tuple[Node, Queue]:
@@ -71,4 +68,5 @@ def peek(data: Queue) -> Node:
 
 
 def clear(data: Queue) -> Queue:
-    raise NotImplementedError("Queue.clear() not defined")
+    data.first = None
+    return data

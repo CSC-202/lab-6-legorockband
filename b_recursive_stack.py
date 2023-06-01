@@ -40,19 +40,18 @@ def isEmpty(data: Stack) -> bool:
     return data.first == None
 
 
-# Unsure how to change this to recurisive function when there are no for loops 
 def push(data: Stack, value: int) -> Stack:
-    new_node = Node(value, None)
-    if data.first is None:
-        data.first = new_node
+    def helper(v: Node):
+        first = v
+        data.first = Node(value, first)
         return data
+    if isEmpty(data):
+        data.first = Node(value, None)
+        return data
+    else:
+        return helper(data.first)
 
-    old = data.first
-    data.first = new_node
-    new_node.next = old
-    return data
 
-# Unsure how to change this to recurisive function when there are no for loops 
 def pop(data: Stack) -> tuple[Node, Stack]:
     def helper(v: Node):
         v = data.first
@@ -61,7 +60,7 @@ def pop(data: Stack) -> tuple[Node, Stack]:
     if isEmpty(data):
         return None
     else:
-        return helper(data)
+        return helper(data.first)
     
 
 
